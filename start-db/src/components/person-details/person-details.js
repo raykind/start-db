@@ -77,11 +77,13 @@ export default class PersonDetails extends Component {
     render() {
         let content = '';
 
-        content = !this.state.person ?
-            <span>Select person from List!</span> :
-            this.state.loading ?
-                <Spinner/> :
-                this.getContent(this.state.person);
+        if (!this.state.person) {
+            content = <span>Select person from List!</span>;
+        } else if (this.state.loading) {
+            content = <Spinner/>;
+        } else {
+            content = this.getContent(this.state.person);
+        }
 
         return (
             <div className="person-details card">
